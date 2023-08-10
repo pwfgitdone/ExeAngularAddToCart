@@ -15,6 +15,7 @@ export class ProductsComponent implements OnInit {
   constructor(private api : ApiService, private cartService : CartService) { }
 
   ngOnInit(): void {
+    this.cartService.ExibirProdutos();
     this.api.getProduct()
     .subscribe(res=>{
       this.productList = res;
@@ -30,7 +31,7 @@ export class ProductsComponent implements OnInit {
 
     this.cartService.search.subscribe((val:any)=>{
       this.searchKey = val;
-    })
+    });
   }
   addtocart(item: any){
     this.cartService.addtoCart(item);

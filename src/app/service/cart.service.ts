@@ -12,6 +12,8 @@ export class CartService {
 
   constructor() { }
   getProducts(){
+    this.ExibirProdutos();
+    this.productList.next(this.cartItemList);
     return this.productList.asObservable();
   }
 
@@ -24,6 +26,7 @@ export class CartService {
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
     console.log(this.cartItemList)
+    localStorage.setItem("BD_carrinho", JSON.stringify(this.cartItemList));
   }
   getTotalPrice() : number{
     let grandTotal = 0;
@@ -39,9 +42,16 @@ export class CartService {
       }
     })
     this.productList.next(this.cartItemList);
+    localStorage.setItem("BD_carrinho", JSON.stringify(this.cartItemList));
   }
   removeAllCart(){
     this.cartItemList = []
     this.productList.next(this.cartItemList);
+    localStorage.setItem("BD_carrinho", JSON.stringify(this.cartItemList));
+  }
+  ExibirProdutos(): void {
+    let bd = localStorage.getItem("BD_carrinho");
+    if(bd) { this.cartItemList = JSON.parse(bd); } 
+    else { this.cartItemList = []; }
   }
 }
