@@ -34,8 +34,8 @@
                 <img src="{{item.image}}" alt="">
                 <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.title}}</h5>
                 <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{item.description}}</p>
-                <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;"><strong>Avaliação</strong> {{item.rating.rate}}</p>
-                <p><strong>Preço:</strong> {{item.price | currency}}</p>
+                <p class="f18"><strong>Preço:</strong> {{item.price | currency}}</p>
+                <p class="fs-6" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;"><strong>Avaliação:</strong> {{item.rating.rate}}</p>
                 <button class="btn btn-primary" (click)=addtocart(item)>COMPRAR</button>
             </div>
         </ng-container>
