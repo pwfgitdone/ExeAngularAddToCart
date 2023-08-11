@@ -22,8 +22,12 @@
                             <td>{{item.title}}</td>
                             <td><img style="width: 120px;" src="{{item.image}}" alt=""></td>
                             <td style="width: 25%;">{{item.description}}</td>
-                            <th style="width: 12%;">{{item.price | currency}}</th>
-                            <td style="width: 12%;">{{item.quantity}}</td>
+                            <td style="width: 12%;">{{item.price | currency}}</td>
+                            <td style="width: 12%;">
+                                <input type="number" value="{{item.quantity}}" readonly>
+                                <button class="btn btn-primary mr2" (click)="aumentarQuantidade(item.id)">+</button>
+                                <button class="btn btn-primary mr2" (click)="diminuirQuantidade(item.id)">-</button>
+                            </td>
                             <td style="width: 12%;">{{item.total | currency}}</td>
                             <td>
                                 <button (click)="removeItem(item)" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>

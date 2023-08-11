@@ -10,6 +10,7 @@ export class CartComponent implements OnInit {
 
   public products : any = [];
   public grandTotal !: number;
+  public itemQuantidade: number = 0;
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
@@ -19,6 +20,15 @@ export class CartComponent implements OnInit {
       this.grandTotal = this.cartService.getTotalPrice();
     });
     this.cartService.ExibirProdutos();
+  }
+  aumentarQuantidade(id:number) {
+    this.cartService.aumentarQuantidadeDoItem(id);
+  }
+  diminuirQuantidade(id:number) {
+    this.cartService.diminuirQuantidadeDoItem(id);
+  }
+  atualizarTotal(id:number, qtd: number) {
+    this.cartService.atualizarTotalDoItem(id, qtd);
   }
   removeItem(item: any){
     this.cartService.removeCartItem(item);

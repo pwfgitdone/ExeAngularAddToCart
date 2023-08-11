@@ -39,6 +39,30 @@ export class CartService {
     })
     return grandTotal;
   }
+  aumentarQuantidadeDoItem(id:number) {
+    this.cartItemList.forEach(( element: { id: any; quantity: number; total: number; price: number; } ) => {
+      if (id==element.id) { element.quantity++; element.total= element.quantity * element.price; }
+    });
+    this.productList.next(this.cartItemList);
+    localStorage.setItem("BD_carrinho", JSON.stringify(this.cartItemList));
+  }
+  diminuirQuantidadeDoItem(id:number) {
+    this.cartItemList.forEach(( element: { id: any; quantity: number; total: number; price: number; } ) => {
+      if (id==element.id) {
+        if(element.quantity>1) {
+          element.quantity--; element.total= element.quantity * element.price;
+        } else { return }
+      }
+    });
+    this.productList.next(this.cartItemList);
+    localStorage.setItem("BD_carrinho", JSON.stringify(this.cartItemList));
+  }
+  atualizarTotalDoItem(id:number, qtd:number) {
+    this.cartItemList.forEach(( element: { id: any; quantity: number; total: number; price: number; } ) => {
+      if (id==element.id){ element.quantity=qtd; element.total= element.quantity * element.price; }
+    });
+    localStorage.setItem("BD_carrinho", JSON.stringify(this.cartItemList));
+  }
   removeCartItem(product: any){
     this.cartItemList.map((a:any, index:any)=>{
       if(product.id=== a.id){
