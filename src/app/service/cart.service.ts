@@ -22,7 +22,11 @@ export class CartService {
     this.productList.next(product);
   }
   addtoCart(product : any){
-    this.cartItemList.push(product);
+    let include = true;
+    this.cartItemList.forEach(( element: { id: any; quantity: number; total: number; price: number; } ) => {
+      if (product.id==element.id){ element.quantity++; element.total= element.quantity * element.price; include=false;}
+    });
+    if (include==true) { this.cartItemList.push(product); }
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
     console.log(this.cartItemList)
