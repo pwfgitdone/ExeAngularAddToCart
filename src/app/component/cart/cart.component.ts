@@ -19,16 +19,13 @@ export class CartComponent implements OnInit {
       this.products = res;
       this.grandTotal = this.cartService.getTotalPrice();
     });
-    this.cartService.ExibirProdutos();
+    this.cartService.updateCartItemList();
   }
   aumentarQuantidade(id:number) {
     this.cartService.aumentarQuantidadeDoItem(id);
   }
   diminuirQuantidade(id:number) {
     this.cartService.diminuirQuantidadeDoItem(id);
-  }
-  atualizarTotal(id:number, qtd: number) {
-    this.cartService.atualizarTotalDoItem(id, qtd);
   }
   removeItem(item: any){
     this.cartService.removeCartItem(item);

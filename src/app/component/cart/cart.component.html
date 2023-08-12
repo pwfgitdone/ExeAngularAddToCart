@@ -7,7 +7,6 @@
                     <thead>
                         <tr>
                             <th>Nº</th>
-                            <th>Nome</th>
                             <th>Imagem</th>
                             <th>Descrição</th>
                             <th>Preço</th>
@@ -19,9 +18,11 @@
                     <tbody>
                         <tr *ngFor="let item of products; let i = index">
                             <td>{{i+1}}</td>
-                            <td>{{item.title}}</td>
                             <td><img style="width: 120px;" src="{{item.image}}" alt=""></td>
-                            <td style="width: 25%;">{{item.description}}</td>
+                            <td style="width: 20%;">
+                                <p><strong>{{item.title}}</strong></p>
+                                <p>{{item.description}}</p>
+                            </td>
                             <td style="width: 12%;">{{item.price | currency}}</td>
                             <td style="width: 12%;">
                                 <input type="number" value="{{item.quantity}}" readonly>
@@ -34,7 +35,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="4"></td>
+                            <td colspan="3"></td>
                             <td><button (click)="emptycart()" class="btn btn-danger">Esvaziar</button></td>
                             <td><button routerLink="/products" class="btn btn-primary">Comprar mais</button></td>
                             <td><button class="btn btn-success">Pagamento</button></td>
